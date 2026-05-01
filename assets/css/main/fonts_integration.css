@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'minecraft'; /* Имя шрифта */
+    src: url('assets/fonts/minecraft.ttf') format('truetype'); /* Путь к файлу */
+    font-weight: normal; /* Начертание: bold, 300, 400 и т.д. */
+    font-style: normal; /* Стиль: italic, normal */
+    font-display: swap; /* Оптимизация отображения */
+}

@@ -1,0 +1,81 @@
+{
+    "DEV_Settings": {},
+    "themes": {
+        "default": {
+            "id": "null",
+            "name": "Default",
+            "description": "Обычный чат.",
+            "versions": [
+                {
+                    "version": 0,
+                    "name": "Классическая",
+                    "css_file": "default.css",
+                    "description": "Стандартный стиль чата."
+                }
+            ]
+        },
+        "SYSTEM_ERROR": {
+            "id": "system_error",
+            "name": "System_error",
+            "description": "все виды ошибкок чего-либо.",
+            "versions": [
+                {
+                    "version": 0,
+                    "name": "Классическая",
+                    "css_file": "systemerror.css",
+                    "description": "ошибка чего-либо."
+                }
+            ]
+        },
+        "minecraft": {
+            "id": "minecraft",
+            "name": "Minecraft",
+            "description": "Общая тема Minecraft с разными стилями оформления.",
+            "versions": [
+                {
+                    "version": 0,
+                    "name": "Классическая",
+                    "css_file": "minecraft_classic.css",
+                    "description": "Стандартный пиксельный стиль Minecraft."
+                },
+                {
+                    "version": 1,
+                    "name": "Серверная",
+                    "css_file": "minecraft_svr.css",
+                    "description": "Стиль будто школо-серверак."
+                },
+                {
+                    "version": 2,
+                    "name": "Сезон лололошки",
+                    "description": "Сезонная тема Lololowka."
+                }
+            ]
+        },
+        "terraria": {
+            "id": "terraria",
+            "name": "Terraria",
+            "description": "Стиль в духе игры Terraria.",
+            "versions": [
+                {
+                    "version": 0,
+                    "name": "Основная",
+                    "css_file": "terraria.css",
+                    "description": "Древесные текстуры и зелёные акценты."
+                }
+            ]
+        },
+        "inscryption": {
+            "id": "inscryption",
+            "name": "Inscryption",
+            "description": "Общий стиль inscryption.",
+            "versions": [
+                {
+                    "version": 0,
+                    "name": "акт 1 Леший",
+                    "css_file": "inscryption.css",
+                    "description": "стиль заблудших душ."
+                }
+            ]
+        }
+    }
+}

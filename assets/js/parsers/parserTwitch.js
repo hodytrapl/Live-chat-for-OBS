@@ -25,6 +25,7 @@ class ParserTwitch{
 
     init(){
         try{
+            
             let parts = this.startedMsg.replace(/^@/, "").split(";");
             for(let part in parts){
                 let [key,value]=parts[part].split("=")
@@ -62,7 +63,7 @@ class ParserTwitch{
 
     conversionDataToHtmlString(){
         const displayName =  this.display_name ? this.display_name.toLowerCase() : "anonymous";
-        let color = this.color || "#000";
+        let color = this.color || getBrightColor(displayName);
         const message = this.user_msg || "";
         if(this.badges && this.badges[0].startsWith("broadcaster/")){
             color="red"

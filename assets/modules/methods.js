@@ -1,31 +1,45 @@
-window.checkChannelTwitch = async (channelName) => {
-    if (!channelName || typeof channelName !== 'string') return false;
-
-    const proxy = 'https://corsproxy.io/';
-    const gql = 'https://gql.twitch.tv/gql';
-    const clientId = 'kimne78kx3ncx6brgo4mv6wki5h1ko';
-
-    const query = {
-        query: `query($login: String!) { user(login: $login) { id } }`,
-        variables: { login: channelName }
-    };
+// проверка канала Cloudflare Worker
+async function checkChannel(channelName){
+    if (!channelName) {
+        showError("Не указан канал в URL (?channel=...)");
+        return;
+    }
 
     try {
-        const response = await fetch(proxy + '?url=' + encodeURIComponent(gql), {
-            method: 'POST',
+        const response = await fetch("https://livechatobs.kostik290820077.workers.dev/", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
-                'Client-ID': clientId
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify(query)
+            body: JSON.stringify({
+                query: `query($login: String!) { user(login: $login) { id } }`,
+                variables: { login: channelName }
+            })
         });
+
         const data = await response.json();
-        return !!data?.data?.user;
+        console.log(data);
+
+        const exists = (data?.data?.user)!= null;
+
+        if (!exists) {
+            return { success: false, error: false };
+        }
+
+        window.sharedChannel = channelName;
+        return { success: true, channelName: channelName, error: false }
+
     } catch (error) {
-        console.warn('Ошибка проверки канала:', error.message);
-        return false;
+        console.error("Ошибка запроса:", error);
+        showError("Ошибка соединения с сервером");
+        return { success: false, error: true }
     }
-};
+}
+
+// функция ошибки
+function showError(text) {
+    document.getElementById("chat-container").innerHTML += `<p>${text}</p>`;
+}
 
 function getBrightColor(nickname) {
         const hash = Array.from(nickname).reduce((acc, ch) => acc + ch.charCodeAt(0), 0);

@@ -1,0 +1,22 @@
+.chat-user{
+    font-size: calc(24px + 16 * (100vw / 1280));
+    width: 100%;          /* чтобы блок занимал всю доступную ширину */
+    max-width: 100%;      /* предотвращает выход за пределы */
+    overflow-wrap: break-word;
+    white-space: normal;   /* явно разрешает переносы */
+}
+.chat-user img{
+    width: calc(17px + 16 * (100vw / 1280));
+    height: calc(17px + 16 * (100vw / 1280));
+}
+.chat-user strong{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.chat-user .user-message{
+    color: rgb(255, 255, 255);
+     /*чтобы сообщение могло занимать меньше 100% ширины */
+    display: inline;
+    /* обеспечивает перенос длинных слов */
+    word-break: break-word; 
+    overflow-wrap: break-word;
+}

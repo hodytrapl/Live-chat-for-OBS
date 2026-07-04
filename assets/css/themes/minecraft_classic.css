@@ -11,7 +11,6 @@ body{
     font-family: 'minecraft';
 }
 .chat-user img{
-    width: calc(13px + 16 * (100vw / 1280));
     height: calc(13px + 16 * (100vw / 1280));
 }
 .chat-user .user-message{

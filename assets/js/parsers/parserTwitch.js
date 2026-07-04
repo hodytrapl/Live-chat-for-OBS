@@ -78,23 +78,29 @@ class ParserTwitch{
         }
 
         let badgeUrl = "";
-        let first_img_badgeUrl=""
         if (this.badges && this.badges[0]) {
             const parts = this.badges[0].split('/');
             if (parts.length == 2) {
                 const badgeName = parts[0];
                 const badgeVersion = parts[1];
-                badgeUrl = getTwitchBadgeURL(badgeName, badgeVersion) || "";
-                if(badgeUrl){
-                    first_img_badgeUrl=`<img src="${badgeUrl}" alt="${badgeName}/${badgeVersion}">`
-                }
+                badgeUrl = getTwitchBadgeURLTAG(badgeName,badgeVersion,getNameTheme(),getVersionTheme()) || "";
             }
         }
+
         if(message){
             //заменяем на безопасный вывод
             const safeDisplayName = escapeHtml(displayName);
             const safeMessage = escapeHtml(message);
-            return `<p class="chat-user">${first_img_badgeUrl}<strong style="color:${color}">${safeDisplayName}</strong>: <span class="user-message">${safeMessage}</span></p>`
+            let TagP= `<p class="chat-user">${badgeUrl}<strong style="color:${color}">${safeDisplayName}</strong>: <span class="user-message">${safeMessage}</span></p>`;
+
+            if(getNameTheme()=="minecraft" && getVersionTheme()==0){
+                TagP= `<p class="chat-user">&lt;${badgeUrl}<strong style="color:${color}">${safeDisplayName}</strong>&gt;: <span class="user-message">${safeMessage}</span></p>`;
+            }
+            else if(getNameTheme()=="minecraft" && getVersionTheme()==1){
+                TagP= `<p class="chat-user">${badgeUrl}[<strong style="color:${color}">${safeDisplayName}</strong>]: <span class="user-message">${safeMessage}</span></p>`;
+            }
+
+            return TagP
         }
         return null
     }
@@ -117,6 +123,7 @@ const BADGE_DB = {
     "subscriber": "5d9f2208-5dd8-11e7-8513-2ff4adfae661", // значок по умолчанию для подписчика
 };
 
+// функция для безопасного вывода текста в HTML
 function escapeHtml(str) {
     if (!str) return '';
     return str
@@ -128,13 +135,28 @@ function escapeHtml(str) {
 }
 
 
+// получаем ссылку на бейджик по его имени и версии
+function getTwitchBadgeURLTAG(badgeName, badgeVersion, themeName, themeVersion) {
+    // Если задана локальная тема
+    if (themeName && themeVersion !== undefined && themeName !== "default" && themeVersion != 0) {
+        const localUrl = `assets/media/${themeName}/${themeVersion}/${badgeName}.png`;
+        
+        // Получаем стандартный URL (запасной вариант)
+        const id = BADGE_DB[badgeName];
+        const fallbackUrl = id 
+            ? `https://static-cdn.jtvnw.net/badges/v1/${id}/${badgeVersion}`
+            : '';
 
-function getTwitchBadgeURL(badgeName,format){
-    const id=BADGE_DB[badgeName]
-    if(!id){
-        console.warn(`бейджик ${badgeName}не найден в баззе данных`)
-        return null
+        // Возвращаем img с onerror – если локальный файл не загрузится, подставится fallback
+        return `<img src="${localUrl}" alt="${badgeName}/${badgeVersion}" onerror="this.onerror=null; this.src='${fallbackUrl}'">`;
     }
-    console.log(`https://static-cdn.jtvnw.net/badges/v1/${id}/${format}`)
-    return `https://static-cdn.jtvnw.net/badges/v1/${id}/${format}`;
+
+    // Стандартный путь (если тема не задана или равна default/0)
+    const id = BADGE_DB[badgeName];
+    if (!id) {
+        console.warn(`Бейджик ${badgeName} не найден в базе данных`);
+        return null;
+    }
+    const url = `https://static-cdn.jtvnw.net/badges/v1/${id}/${badgeVersion}`;
+    return `<img src="${url}" alt="${badgeName}/${badgeVersion}">`;
 }

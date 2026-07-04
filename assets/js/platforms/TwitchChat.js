@@ -30,7 +30,6 @@ function startChat(channel) {
     // отправка сообщение и её парсинг
     if (!shouldIgnoreMessage(msg)) {
       let parserTwitch = new ParserTwitch(msg)
-      parserTwitch.showData()
       let htmlMessage=parserTwitch.conversionDataToHtmlString();
       if(htmlMessage!=null){
         const container = document.getElementById("chat-container");

@@ -40,16 +40,11 @@
                 },
                 {
                     "version": 1,
-                    "name": "Серверная",
-                    "css_file": "minecraft_classic.css",
-                    "description": "Стиль будто школо-серверак."
-                },
-                {
-                    "version": 2,
                     "name": "Сезон лололошки",
                     "css_file": "minecraft_classic.css",
                     "description": "Сезонная тема Lololowka."
                 }
+                
             ]
         },
         "terraria": {

@@ -1,14 +1,23 @@
-let currentTheme = null;
-let nameTheme = null;
-let versionTheme = null;
+let currentTheme = "default/0";
+let nameTheme = "default";
+let versionTheme = 0;
 function setTheme(theme) {
     currentTheme = theme;
     nameTheme = theme.split("/")[0];
     versionTheme = parseInt(theme.split("/")[1]);
 }
+
 function getTheme() {
     return currentTheme;
 }
+
+function getNameTheme() {
+    return nameTheme;
+}
+function getVersionTheme() {
+    return versionTheme;
+}
+
 function applyThemeToHead(themeData) {
     if (!themeData) {
         console.warn("No theme data provided");

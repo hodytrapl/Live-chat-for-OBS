@@ -1,10 +1,12 @@
 // проверка канала Cloudflare Worker
 async function checkChannel(channelName){
+    // проверяем, что канал указан
     if (!channelName) {
         showError("Не указан канал в URL (?channel=...)");
         return;
     }
 
+    // проверяем, что канал существует
     try {
         const response = await fetch("https://livechatobs.kostik290820077.workers.dev/", {
             method: "POST",
@@ -41,6 +43,7 @@ function showError(text) {
     document.getElementById("chat-container").innerHTML += `<p>${text}</p>`;
 }
 
+// функция для получения яркого цвета на основе ника
 function getBrightColor(nickname) {
         const hash = Array.from(nickname).reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
         

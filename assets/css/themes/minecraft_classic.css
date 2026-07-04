@@ -1,16 +1,18 @@
+body{
+    background-color: rgba(0, 0, 0, 0.55); /* полупрозрачный черный фон */
+}
 .chat-user{
-    font-size: calc(24px + 16 * (100vw / 1280));
+    font-size: calc(19px + 16 * (100vw / 1280));
     width: 100%;          /* чтобы блок занимал всю доступную ширину */
     max-width: 100%;      /* предотвращает выход за пределы */
     overflow-wrap: break-word;
     white-space: normal;   /* явно разрешает переносы */
+    color: white;
+    font-family: 'minecraft';
 }
 .chat-user img{
-    width: calc(17px + 16 * (100vw / 1280));
-    height: calc(17px + 16 * (100vw / 1280));
-}
-.chat-user strong{
-    font-family: Arial, Helvetica, sans-serif;
+    width: calc(13px + 16 * (100vw / 1280));
+    height: calc(13px + 16 * (100vw / 1280));
 }
 .chat-user .user-message{
     color: rgb(255, 255, 255);

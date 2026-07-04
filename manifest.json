@@ -1,4 +1,9 @@
 {
     "version":"0.5b3",
-    "author":"hodytrapl"
+    "author":"hodytrapl",
+    "credits": {
+        "terraria font":"https://vseshrifty.ru/fonts/andy-bold-cyrillic",
+        "minecraft font":"https://www.dafont.com/minecraft.font",
+        "inscryption font":"https://vk.com/wall-208128272_1149"
+    }
 }

@@ -1,0 +1,24 @@
+/* Сброс отступов и фиксация высоты */
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;          /* убираем скролл на уровне body */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;            /* занимает всю высоту окна */
+}
+
+.chat-container {
+    flex: 1;                  /* займёт всё оставшееся место */
+    overflow-y: auto;         /* включает прокрутку, если контент не помещается */
+    scrollbar-width: none;    /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* Chrome, Safari, Opera */
+.chat-container::-webkit-scrollbar {
+    display: none;
+}

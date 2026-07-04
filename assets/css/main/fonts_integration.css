@@ -1,6 +1,22 @@
 @font-face {
     font-family: 'minecraft'; /* Имя шрифта */
-    src: url('assets/fonts/minecraft.ttf') format('truetype'); /* Путь к файлу */
+    src: url('../../../assets/fonts/minecraft.ttf') format('truetype'); /* Путь к файлу */
+    font-weight: normal; /* Начертание: bold, 300, 400 и т.д. */
+    font-style: normal; /* Стиль: italic, normal */
+    font-display: swap; /* Оптимизация отображения */
+}
+
+@font-face {
+    font-family: 'inscryptionACT1Fan'; /* Имя шрифта */
+    src: url('../../../assets/fonts/HeavyweightRusFan.ttf') format('truetype'); /* Путь к файлу */
+    font-weight: normal; /* Начертание: bold, 300, 400 и т.д. */
+    font-style: normal; /* Стиль: italic, normal */
+    font-display: swap; /* Оптимизация отображения */
+}
+
+@font-face {
+    font-family: 'terraria'; /* Имя шрифта */
+    src: url('../../../assets/fonts/Andy\ Gras.otf') format('truetype'); /* Путь к файлу */
     font-weight: normal; /* Начертание: bold, 300, 400 и т.д. */
     font-style: normal; /* Стиль: italic, normal */
     font-display: swap; /* Оптимизация отображения */

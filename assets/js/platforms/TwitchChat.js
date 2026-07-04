@@ -4,6 +4,7 @@ function startChat(channel) {
 
   const ws = new WebSocket("wss://irc-ws.chat.twitch.tv:443");
 
+  //отдаем данные для авторизации и подписываемся на канал
   ws.onopen = () => {
       ws.send(`PASS ${pass}`);
       ws.send(`NICK ${nick}`);
@@ -34,6 +35,14 @@ function startChat(channel) {
       if(htmlMessage!=null){
         const container = document.getElementById("chat-container");
         container.insertAdjacentHTML('beforeend', htmlMessage);
+        const MAX_MESSAGES = 25;
+        
+        // Удаляем лишние старые сообщения
+        while (container.children.length > MAX_MESSAGES) {
+            container.removeChild(container.firstChild);
+        }
+
+        // Прокручиваем вниз (уже есть)
         container.scrollTop = container.scrollHeight;
       }
     }
